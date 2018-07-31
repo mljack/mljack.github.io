@@ -1,0 +1,3 @@
+[submodule "deeptraffic"]
+	path = deeptraffic
+	url = https://github.com/mljack/deeptraffic
