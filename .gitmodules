@@ -1,3 +1,6 @@
 [submodule "deeptraffic"]
 	path = deeptraffic
 	url = https://github.com/mljack/deeptraffic
+[submodule "obb_editor"]
+	path = obb_editor
+	url = https://github.com/mljack/obb_editor.git
