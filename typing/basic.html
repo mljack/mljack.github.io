@@ -38,18 +38,10 @@
         </div>
     </div>
 </nav>
-<div class="uk-padding-large uk-background-top-left uk-background-fixed uk-background-cover"
-     style="background-image: url(./imgs/bg002.jpg);">
-    <div class="container">
-        <p class="display-4 text-light text-center">直视屏幕，禁止偷窥键盘！</p>
-        <p class="display-4 text-light text-center">直视屏幕，禁止偷窥键盘！</p>
-        <p class="display-4 text-light text-center">直视屏幕，禁止偷窥键盘！</p>
-    </div>
-</div>
 <div id="main" class="uk-section container">
     <div class="uk-container">
-        <div class="h4 uk-width-2-3 uk-align-right">第一次敲击开始计算打字速度 {{speed}} 字/分钟 错误：{{errorTimes}} 次</div>
-        <div class="btn-group uk-width-1-4">
+        <div class="h4 uk-width-2-3 uk-align-right">打字速度 {{speed}} 字/分钟 错误：{{errorTimes}} 次</div>
+        <div class="btn-group uk-width-1-4" style="width: 100%;">
             <button class="btn btn-primary">食指</button>
             <div uk-dropdown="pos: bottom-justify">
                 <ul class="uk-nav uk-dropdown-nav">
@@ -90,25 +82,16 @@
                     <li><a href="#" @click="loadArticle('fingure44.json');">1 & 0</a></li>
                 </ul>
             </div>
+            <button class="btn btn-primary">Home Row</button>
+            <div uk-dropdown="pos: bottom-justify">
+                <ul class="uk-nav uk-dropdown-nav">
+                    <li><a href="#" @click="loadArticle('homerow1.json');">asdf gh jkl;</a></li>
+                </ul>
+            </div>
         </div>
     </div>
     <div id="input-div" class="uk-margin uk-padding" v-html="article"></div>
 </div>
-<a href="http://www.forten.org" target="_blank">
-    <div class="navbar navbar-nav navbar-dark bg-dark uk-text-center text-light"
-         title="在线英文打字练习,提高打字速度,英文打字,打字指法,盲打训练,指法练习,英文打字指法,英文打字指法训练,打字指法练习">
-        <div class="uk-grid uk-padding-large">
-            <figure class="uk-width-1-2">
-                <img src="imgs/forten.png" alt="http://www.ForTen.org"/>
-                <figcaption>&copy; ForTen.org</figcaption>
-            </figure>
-            <figure class="uk-width-1-2">
-                <img src="imgs/wx.png" alt="唯实讲堂微信订阅号"/>
-                <figcaption>微信订阅号</figcaption>
-            </figure>
-        </div>
-    </div>
-</a>
 <script src="js/popper.min.js"></script>
 <script src="js/jquery-3.2.1.js"></script>
 <script src="js/vue.js"></script>
