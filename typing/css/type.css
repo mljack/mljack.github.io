@@ -36,6 +36,11 @@
     color: black;
 }
 
+.incorrect {
+    color: red;
+    text-decoration: line-through;
+}
+
 .errors {
     box-shadow: 2px 2px 5px 1px #f00 inset,
     -2px -2px 5px 1px #f00 inset;

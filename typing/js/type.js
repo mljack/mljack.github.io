@@ -19,22 +19,27 @@ var typeLetter = function (event) {
     }
 
     if (source == type) {
-        currSpan.removeClass('cursor').removeClass('blink').removeClass('init').removeClass('error').addClass('correct');
+        currSpan.removeClass('cursor').removeClass('blink').removeClass('init').removeClass('error').removeClass('incorrect').addClass('correct');
         nextSpan.addClass('cursor').addClass('blink');
         ++vm.types;
+        ++vm.types_all;
         var useTime = new Date().getTime() - vm.begin;
         if (vm.types > 3)
             vm.speed = Math.ceil((vm.types * 60) / (useTime / 1000));
     } else {
+        currSpan.removeClass('cursor').removeClass('blink').removeClass('init').removeClass('error').removeClass('correct').addClass('incorrect');
+        nextSpan.addClass('cursor').addClass('blink');
+        ++vm.types_all;
         if (exKeyCode.indexOf(event.keyCode) == -1) {
             ++vm.errorTimes;
         }
     }
-    if (vm.types == vm.spanArray.length) {
+    if (vm.types_all == vm.spanArray.length) {
         $('#input-div>span').last().removeClass('cursor').removeClass('blink');
-        $('#input-div>span').removeClass('correct').addClass('init');
+        $('#input-div>span').removeClass('error').removeClass('incorrect').removeClass('correct').addClass('init');
         $('#input-div>span').first().addClass('cursor').addClass('blink');
         vm.types = 0;
+        vm.types_all = 0;
         vm.begin = new Date().getTime();
     }
 };
@@ -47,6 +52,7 @@ var loadArticle = function (name) {
         this.started = false;
         this.speed = 0;
         this.types = 0;
+        this.types_all = 0;
         this.errorTimes = 0;
         this.letterArray = res.data.article.split('');
         this.spanArray = $.map(this.letterArray, function (value) {
