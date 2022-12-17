@@ -1,5 +1,5 @@
 var exKeyCode = [8, 9, 12, 13, 16, 17, 18, 20, 27, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46, 144, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123]
-var k = 50;
+var k = 80;
 var typeLetter = function (event) {
     if (!vm.started) {
         vm.started = true;
@@ -9,8 +9,8 @@ var typeLetter = function (event) {
     var nextSpan = currSpan.next('span').first();
     if (nextSpan.length == 0) {
         nextSpan = currSpan.next("br")
-        for(var i = 0; i < k; ++i)
-            nextSpan = nextSpan.next("span")
+        while(nextSpan.next("span").length != 0)
+            nextSpan = nextSpan.next("span");
         nextSpan = nextSpan.next("br").next("span").first();
     }
     var source = currSpan.html();
@@ -34,18 +34,40 @@ var typeLetter = function (event) {
         if (vm.types > 3)
             vm.speed = Math.ceil((vm.types * 60) / (useTime / 1000));
     } else {
-        currSpan[0].innerHTML = type;
-        currSpan.removeClass('cursor').removeClass('blink').removeClass('init').removeClass('error').removeClass('hidden').removeClass('correct').addClass('incorrect');
-        nextSpan.addClass('cursor').addClass('blink');
-        ++vm.types_all;
-        if (exKeyCode.indexOf(event.keyCode) == -1) {
+        if (exKeyCode.indexOf(event.keyCode) == -1 && type.length <= 6) {
+            currSpan[0].innerHTML = type;
+            currSpan.removeClass('cursor').removeClass('blink').removeClass('init').removeClass('error').removeClass('hidden').removeClass('correct').addClass('incorrect');
+            nextSpan.addClass('cursor').addClass('blink');
+            ++vm.types_all;
             ++vm.errorTimes;
         }
     }
     if (vm.types_all == vm.spanArray2.length) {
-        $('#input-div>span').last().removeClass('cursor').removeClass('blink');
-        $('#input-div>span').removeClass('error').removeClass('incorrect').removeClass('correct').addClass('init');
-        $('#input-div>span').first().addClass('cursor').addClass('blink');
+        // $('#input-div>span').last().removeClass('cursor').removeClass('blink');
+        // $('#input-div>span').removeClass('error').removeClass('incorrect').removeClass('correct').addClass('init');
+        // $('#input-div>span').first().addClass('cursor').addClass('blink');
+        var spans = $('#input-div>')
+        var j = 0;
+        for(var i = 0; i < spans.length; ++i) {
+            var base_i = i;
+            for(; i < spans.length; ++i) {
+                if (spans[i].outerHTML=='<br>') {
+                    ++i;
+                    break;
+                }
+            }
+            for(; i < spans.length; ++i, ++base_i) {
+                if (spans[i].outerHTML=='<br>')
+                    break;
+                spans[i].innerHTML = spans[base_i].innerHTML;
+                if (j == 0) {
+                    spans[i].className="init cursor blink"
+                    j = 1;
+                } else {
+                    spans[i].className="init hidden"
+                }
+            }
+        }
         vm.types = 0;
         vm.types_all = 0;
         vm.begin = new Date().getTime();
@@ -53,6 +75,7 @@ var typeLetter = function (event) {
 };
 
 var loadArticle = function (name) {
+    article_name = name;
     this.article = '';
     axios({
         url: 'article/' + name

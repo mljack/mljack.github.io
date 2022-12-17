@@ -2125,8 +2125,8 @@ select.uk-form-width-xsmall {
 /* Desktop and bigger */
 @media (min-width: 960px) {
   .uk-section {
-    padding-top: 70px;
-    padding-bottom: 70px;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 }
 /*
@@ -2166,8 +2166,8 @@ select.uk-form-width-xsmall {
  * Large
  */
 .uk-section-large {
-  padding-top: 70px;
-  padding-bottom: 70px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 /* Tablet landscape and bigger */
 @media (min-width: 960px) {
@@ -2634,8 +2634,8 @@ select.uk-form-width-xsmall {
   .uk-tile {
     padding-left: 40px;
     padding-right: 40px;
-    padding-top: 70px;
-    padding-bottom: 70px;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 }
 /*
@@ -8630,7 +8630,7 @@ td.uk-text-break {
   margin-bottom: 20px;
 }
 * + .uk-margin {
-  margin-top: 20px !important;
+  margin-top: 5px !important;
 }
 .uk-margin-top {
   margin-top: 20px !important;
@@ -8821,7 +8821,7 @@ td.uk-text-break {
 /* Desktop and bigger */
 @media (min-width: 1200px) {
   .uk-padding {
-    padding: 40px;
+    padding: 10px;
   }
 }
 /* Small
